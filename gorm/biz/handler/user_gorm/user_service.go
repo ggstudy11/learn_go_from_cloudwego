@@ -10,6 +10,7 @@ import (
 	"github.com/ggstudy11/learn_go_from_cloudwego/gorm/biz/dal/mysql"
 	user_gorm "github.com/ggstudy11/learn_go_from_cloudwego/gorm/biz/hertz_gen/user_gorm"
 	"github.com/ggstudy11/learn_go_from_cloudwego/gorm/biz/model"
+	"github.com/ggstudy11/learn_go_from_cloudwego/gorm/biz/pack"
 )
 
 // UpdateUser .
@@ -68,9 +69,12 @@ func QueryUser(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := new(user_gorm.QueryUserResponse)
-
-	c.JSON(consts.StatusOK, resp)
+	users, total, err := mysql.QueryUser(req.Keyword, req.Page, req.PageSize)
+	if err != nil {
+		c.JSON(consts.StatusInternalServerError, &user_gorm.QueryUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		return
+	}
+	c.JSON(consts.StatusOK, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Total: total})
 }
 
 // CreateUser .

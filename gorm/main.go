@@ -4,9 +4,11 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/ggstudy11/learn_go_from_cloudwego/gorm/biz/dal"
 )
 
 func main() {
+	dal.Init()
 	h := server.Default()
 
 	register(h)

@@ -1,0 +1,36 @@
+# 新增用户
+POST http://localhost:8888/v1/user/create
+Content-Type: application/json
+
+{
+    "name": "Alice",
+    "gender": 1,
+    "age": 20,
+    "introduce": "Hello"
+}
+
+###
+# 更新用户
+POST http://localhost:8888/v1/user/update/1
+Content-Type: application/json
+
+{
+    "name": "Alice",
+    "gender": 1,
+    "age": 20,
+    "introduce": "update"
+}
+
+###
+# 查询用户
+POST http://localhost:8888/v1/user/query
+Content-Type: application/json
+
+{
+    "page": 1,
+    "page_size": 10
+}
+
+### 
+# 删除用户
+POST http://localhost:8888/v1/user/delete/1

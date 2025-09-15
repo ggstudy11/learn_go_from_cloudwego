@@ -8,7 +8,7 @@ services:
     ports:
       - 9910:3306
     environment:
-      - MYSQL_DATABASE=ggstudy11
+      - MYSQL_DATABASE=gorm
       - MYSQL_USER=ggstudy11
       - MYSQL_PASSWORD=07030877
       - MYSQL_RANDOM_ROOT_PASSWORD="yes"
